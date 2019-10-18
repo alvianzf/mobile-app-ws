@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alvianzf.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.alvianzf.app.ws.ui.model.response.UserRest;
 
 @RestController
@@ -44,7 +46,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public String postUser()
+	public String createUser(@RequestBody UserDetailsRequestModel userDetails)
 	{
 		return "post user was called!";
 	}
