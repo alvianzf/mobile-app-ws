@@ -1,5 +1,8 @@
 package com.alvianzf.app.ws.ui.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +26,12 @@ public class UserController {
 		return "getUser was called with page = " + page + " and limit = " + limit ;
 	}
 	
-	@GetMapping(path="/{userId}")
-	public UserRest getUser(@PathVariable String userId)
+	@GetMapping(path="/{userId}",
+			produces= {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_VALUE
+			})
+	public ResponseEntity<UserRest> getUser(@PathVariable String userId)
 	{
 		UserRest returnValue = new UserRest();
 		
@@ -33,7 +40,7 @@ public class UserController {
 		returnValue.setLastName("Faturrahman");
 		
 		
-		return returnValue;
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 	}
 	
 	@PostMapping
